@@ -12,19 +12,20 @@ void main() {
     numbers[8] = 100;
     numbers[9] = 120;
 
+    int[] numbers2 = Arrays.copyOf(numbers, numbers.length);
+
     System.out.println("Before algorithmic sorting:");
     printArrayElements(numbers);
 
-//    // Bubble Sort
-//    System.out.println("\n\nAfter bubble sort:");
-//    bubbleSort(numbers);
-//    printArrayElements(numbers);
-
-    // Selection Sort
-    System.out.println("\n\nAfter selection sort:");
-    selectionSort(numbers);
+    // Bubble Sort
+    System.out.println("\n\nBubble sort:");
+    bubbleSort(numbers);
     printArrayElements(numbers);
 
+    // Selection Sort
+    System.out.println("\n\nSelection sort:");
+    selectionSort(numbers2);
+    printArrayElements(numbers2);
 }
 
 void printArrayElements(int[] array) {
@@ -36,7 +37,7 @@ void printArrayElements(int[] array) {
 void bubbleSort(int[] array) {
     for (int lastSortedIndex = array.length - 1; lastSortedIndex > 0; lastSortedIndex--) {
         for (int i = 0; i < lastSortedIndex; i++) {
-            if (array[i] > array[i + 1]) {
+            if (array[i] < array[i + 1]) {
                 int temp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = temp;
@@ -49,16 +50,16 @@ void bubbleSort(int[] array) {
 // Unstable Algorithm
 void selectionSort(int[] array) {
     for (int lastSortedIndex = array.length - 1; lastSortedIndex > 0; lastSortedIndex--) {
-        int largestIndex = 0;
+        int smallestIndex = 0;
 
         for (int i = 0; i <= lastSortedIndex; i++) {
-            if (array[i] > array[largestIndex]) {
-                largestIndex = i;
+            if (array[i] < array[smallestIndex]) {
+                smallestIndex = i;
             }
         }
 
         int temp = array[lastSortedIndex];
-        array[lastSortedIndex] = array[largestIndex];
-        array[largestIndex] = temp;
+        array[lastSortedIndex] = array[smallestIndex];
+        array[smallestIndex] = temp;
     }
 }
