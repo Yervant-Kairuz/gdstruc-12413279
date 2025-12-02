@@ -37,4 +37,6 @@ void main() {
     }
 
     System.out.println(index);
+
+    float[] floats = new float[20];
 }
